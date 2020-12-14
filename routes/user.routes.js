@@ -5,7 +5,7 @@ const passport = require("passport");
 const jwt = require("jsonwebtoken");
 
 const User = require("../models/User");
-// ok ok
+
 // REST => REpresentational State Transfer
 
 // HTTP é stateless
