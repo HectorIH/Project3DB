@@ -111,10 +111,30 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     try {
-      console.log(req.user);
+      console.log("req", req.user);
 
       const result = await User.findOne({ _id: req.user._id });
 
+      res
+        .status(200)
+        .json({ message: "This is a protected route", user: result });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ msg: err });
+    }
+  }
+);
+
+router.patch(
+  "/profile",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    try {
+      console.log("req", req.user);
+      const result = await User.findOneAndUpdate(
+        { _id: req.user._id },
+        req.body
+      );
       res
         .status(200)
         .json({ message: "This is a protected route", user: result });
