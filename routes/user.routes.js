@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
+const Link = require("../models/Link");
 
 const User = require("../models/User");
 
@@ -144,5 +145,46 @@ router.patch(
     }
   }
 );
+
+//ROTA BACK END PARA CRIAR LINK ÚTEIS NO DB
+
+router.post("/linkcreate", async (req, res) => {
+  console.log(req.body);
+  const registrarDB = await Link.create({
+    link: req.body.link,
+    url: req.body.url,
+    description: req.body.description,
+  });
+  console.log(registrarDB);
+});
+
+//ROTA BACK END PARA PUXAR LINK ÚTEIS NO DB
+
+router.get("/linksall", async (req, res) => {
+  const pegaAllLinks = await Link.find();
+  res.json({ pegaAllLinks });
+});
+
+// FINISH
+
+router.get("/allusers", async (req, res) => {
+  const pegaAllUsersDB = await User.find();
+  res.json({ pegaAllUsersDB });
+});
+
+// router.delete("/deletelink/:id", async (req, res) => {
+//   console.log(req.params.id);
+
+//   const deleteDBOne = await Link.deleteOne({ link: req.params.id });
+// });
+
+router.delete("/deletelink/:QUALQUERCOISA", async (req, res) => {
+  console.log(req);
+  console.log(req.params.QUALQUERCOISA);
+
+  const ProcurarEDeletarnoBanco = await Link.deleteOne({
+    link: req.params.QUALQUERCOISA,
+  });
+});
 
 module.exports = router;
