@@ -115,7 +115,7 @@ router.get(
       console.log("req", req.user);
 
       const result = await User.findOne({ _id: req.user._id });
-
+      // console.log("result profile", result)
       res
         .status(200)
         .json({ message: "This is a protected route", user: result });
@@ -155,6 +155,7 @@ router.post("/linkcreate", async (req, res) => {
     url: req.body.url,
     description: req.body.description,
   });
+  res.json({ name: "criou com sucesso" });
   console.log(registrarDB);
 });
 
@@ -185,6 +186,19 @@ router.delete("/deletelink/:QUALQUERCOISA", async (req, res) => {
   const ProcurarEDeletarnoBanco = await Link.deleteOne({
     link: req.params.QUALQUERCOISA,
   });
+  res.json({ name: "deletado com sucesso" });
+});
+
+router.get("/perfil/:qualquercoisa", async (req, res) => {
+  console.log(req.params.qualquercoisa);
+
+  const PegarPerfilDinamicoBanco = await User.findOne({
+    name: req.params.qualquercoisa,
+  });
+
+  console.log(PegarPerfilDinamicoBanco)
+  res.json({PegarPerfilDinamicoBanco})
+  // res.json({"O QUE VIER DO BANCO"})
 });
 
 module.exports = router;

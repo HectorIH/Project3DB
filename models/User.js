@@ -19,26 +19,15 @@ const UserSchema = new Schema({
   about: { type: String, default: "" },
   linkedin: { type: String, default: "" },
   github: { type: String, default: "" },
-  projects: {
-    type: Object,
-    default: {
-      project1: {
-        name: "",
-        demo: "",
-        github: "",
-      },
-      project2: {
-        name: "",
-        demo: "",
-        github: "",
-      },
-      project3: {
-        name: "",
-        demo: "",
-        github: "",
-      },
-    },
-  },
+  project1name: { type: String, default: "" },
+  project1demo: { type: String, default: "" },
+  project1url: { type: String, default: "" },
+  project2name: { type: String, default: "" },
+  project2demo: { type: String, default: "" },
+  project2url: { type: String, default: "" },
+  project3name: { type: String, default: "" },
+  project3demo: { type: String, default: "" },
+  project3url: { type: String, default: "" },
   stacks: { type: Array, default: [] },
 });
 
